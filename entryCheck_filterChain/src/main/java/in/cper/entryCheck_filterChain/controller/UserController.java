@@ -22,9 +22,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user){
-        System.out.println("Entered addUser endpoint");
         userService.addUser();
-        System.out.println("Exiting addUser endpoint");
         return ResponseEntity.ok(user);
     }
 

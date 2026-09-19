@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     public void addUser() {
-        System.out.println("Performed the business logic");
+
     }
 }

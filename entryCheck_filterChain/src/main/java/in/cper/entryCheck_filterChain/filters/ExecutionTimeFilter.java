@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@Order(4)
+@Order(5)
 public class ExecutionTimeFilter implements Filter {
 
     @Override
@@ -31,7 +31,7 @@ public class ExecutionTimeFilter implements Filter {
         finally {
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime;
-            System.out.println("API-execution-time-repot : " + duration + "ms");
+            System.out.println("API-execution-time-report : " + duration + "ms");
         }
 
     }

@@ -18,8 +18,15 @@ public class LoggingFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
-        String API_Info = httpServletRequest.getMethod() + " " + httpServletRequest.getRequestURI();
-        System.out.println("Saving API Info: " + API_Info);
+
+        System.out.println("---------------Request Entry---------------");
+
+        String API_Method = httpServletRequest.getMethod();
+        String API_URL = httpServletRequest.getRequestURI();
+
+        System.out.println("API_Method :  " + API_Method);
+        System.out.println("API_URL :  " + API_URL);
+
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

@@ -5,12 +5,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import java.io.IOException;
 import java.util.UUID;
 
 @Component
-@Order(3)
+@Order(4)
 public class ModifyResponseFilter implements Filter {
 
     @Override
@@ -19,10 +20,31 @@ public class ModifyResponseFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
+        ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper(httpServletResponse);
+
+        System.out.println("\n-------------Response Exist-----------------");
+
         String UniqueID = UUID.randomUUID().toString();
         httpServletResponse.setHeader("Your-Unique-ID", UniqueID);
-        System.out.println("Unique ID :  " + UniqueID + " assigned to user.");
+        System.out.println("UniqueID :   " + UniqueID);
 
-        filterChain.doFilter(servletRequest, servletResponse);
+        filterChain.doFilter(servletRequest, responseWrapper);
+
+        String body = new String(responseWrapper.getContentAsByteArray());
+
+        String modifiedBody = """
+                {
+                   "OriginalResponse" : %s,
+                   "UniqueID" : %s,
+                }
+                """.formatted(body,UniqueID);
+
+        System.out.println("modifiedBody :   " + modifiedBody);
+
+        responseWrapper.resetBuffer();
+        responseWrapper.getWriter().write(modifiedBody);
+        responseWrapper.copyBodyToResponse();
+
+        System.out.println("---------------------------------------------");
     }
 }
