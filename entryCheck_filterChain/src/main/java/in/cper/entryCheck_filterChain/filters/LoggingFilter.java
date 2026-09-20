@@ -19,7 +19,7 @@ public class LoggingFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
 
-        System.out.println("---------------Request Entry---------------");
+        System.out.println("---------------Request Framing Started---------------");
 
         String API_Method = httpServletRequest.getMethod();
         String API_URL = httpServletRequest.getRequestURI();

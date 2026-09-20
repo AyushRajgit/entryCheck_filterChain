@@ -25,6 +25,6 @@ public class LoggingRequestBody implements Filter {
 
         String reqBody = new String(requestWrapper.getContentAsByteArray());
         System.out.println("Request_Body : " + reqBody);
-        System.out.println("-------------------------------------------\n");
+        System.out.println("---------------------Request Framing Done----------------------\n");
     }
 }

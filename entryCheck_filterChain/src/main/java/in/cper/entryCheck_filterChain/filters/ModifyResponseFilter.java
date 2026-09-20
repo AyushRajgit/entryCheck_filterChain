@@ -22,7 +22,7 @@ public class ModifyResponseFilter implements Filter {
 
         ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper(httpServletResponse);
 
-        System.out.println("\n-------------Response Exist-----------------");
+        System.out.println("\n-------------Response Framing Started-----------------");
 
         String UniqueID = UUID.randomUUID().toString();
         httpServletResponse.setHeader("Your-Unique-ID", UniqueID);
@@ -45,6 +45,6 @@ public class ModifyResponseFilter implements Filter {
         responseWrapper.getWriter().write(modifiedBody);
         responseWrapper.copyBodyToResponse();
 
-        System.out.println("---------------------------------------------");
+        System.out.println("---------------------Reponse Framing Done------------------------");
     }
 }
