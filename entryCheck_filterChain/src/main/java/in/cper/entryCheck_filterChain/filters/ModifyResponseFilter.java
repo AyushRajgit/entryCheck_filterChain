@@ -35,7 +35,7 @@ public class ModifyResponseFilter implements Filter {
         String modifiedBody = """
                 {
                    "OriginalResponse" : %s,
-                   "UniqueID" : %s,
+                   "UniqueID" : %s
                 }
                 """.formatted(body,UniqueID);
 

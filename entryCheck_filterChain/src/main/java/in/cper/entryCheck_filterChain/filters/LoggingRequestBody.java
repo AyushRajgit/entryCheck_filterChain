@@ -24,7 +24,12 @@ public class LoggingRequestBody implements Filter {
         filterChain.doFilter(requestWrapper,httpServletResponse);
 
         String reqBody = new String(requestWrapper.getContentAsByteArray());
-        System.out.println("Request_Body : " + reqBody);
+        if (reqBody == null ||  reqBody.equals("")) {
+            System.out.println("Request body : empty");
+        } else {
+            System.out.println("Request_Body : " + reqBody);
+        }
+
         System.out.println("---------------------Request Framing Done----------------------\n");
     }
 }
